@@ -11,8 +11,6 @@ class ProviderSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class ServiceAreaSerializer(GeoFeatureModelSerializer):
-    # provider = ProviderSerializer(read_only=True)
-
     class Meta:
         model = ServiceArea
         geo_field = 'area'

@@ -37,15 +37,13 @@ class ProviderViewSet(viewsets.ModelViewSet):
 
 
 class ServiceAreaFilter(filters.FilterSet):
-    """
-    asdasda
-    """
-
     point = filters.CharFilter(method='filter_point', label='Point',
-                               help_text=u'Return areas that contain `point=<longitude>,<latitude>`',
-                               type=u'test')
+                               help_text=u'Return areas that contain specified geo point.',)
 
     def filter_point(self, queryset, name, value):
+        """
+        Filter ServiceArea by a point.
+        """
         try:
             latitude, longitude = [float(v) for v in value.split(',')]
             point = Point(longitude, latitude)
@@ -54,7 +52,7 @@ class ServiceAreaFilter(filters.FilterSet):
             logger.exception('Can\'t create Point(longitude, latitude) with provided data')
             raise ValidationError('Error on latitude/longitude provided data')
 
-        return ServiceArea.objects.filter(area__contains=point)
+        return queryset.filter(area__contains=point)
 
     class Meta:
         model = ServiceArea
@@ -64,10 +62,13 @@ class ServiceAreaFilter(filters.FilterSet):
 class ServiceAreaViewSet(viewsets.ModelViewSet):
     """
     retrieve:
-        Return a `ServiceArea` instance. You can filter by a geo point.
+        Return a `ServiceArea` instance.
 
     list:
-        Return all `ServiceArea`.
+        Return `ServiceArea` instances.
+
+        Filters:
+            point=<longitude>,<latitude>
 
     create:
         Create a new `ServiceArea`.
