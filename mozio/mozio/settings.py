@@ -77,28 +77,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'mozio.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/2.2/ref/settings/#databases
-
-# DATABASES = {
-    # 'default': {
-        # 'ENGINE': 'django.db.backends.sqlite3',
-        # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    # }
-# }
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': 'gis',
-        'USER': 'user001',
-        'PASSWORD': '123456789',
-        'HOST': 'localhost',
-        'PORT': '5432'
-    }
-}
-
-
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
 
@@ -141,3 +119,30 @@ STATIC_URL = '/static/'
 REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',)
 }
+
+if os.getenv('env') == 'development':
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.contrib.gis.db.backends.postgis',
+            'NAME': 'mozio',
+            'USER': os.getenv('pg_user'),
+            'PASSWORD': os.getenv('pg_password'),
+            'HOST': 'mozio.cf3eenxh04e0.us-east-1.rds.amazonaws.com',
+            'PORT': '5432'
+        }
+    }
+
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.contrib.gis.db.backends.postgis',
+            'NAME': 'gis',
+            'USER': 'user001',
+            'PASSWORD': '123456789',
+            'HOST': 'localhost',
+            'PORT': '5432'
+        }
+    }
+
+GDAL_LIBRARY_PATH = "/tmp/code/lib/libgdal.so.20.1.3"
+GEOS_LIBRARY_PATH = "/tmp/code/lib/libgeos_c.so.1"<Paste>
