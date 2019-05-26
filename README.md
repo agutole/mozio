@@ -1,5 +1,8 @@
 # Mozio project
 
-Deployed on 
+* Deployed on 
     - AWS Lambda
     - AWS RDS Postgres + postgis
+
+* API Documentation:
+- <host>/api/docs

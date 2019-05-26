@@ -12,6 +12,9 @@ class Provider(models.Model):
     language = LanguageField()
     currency = models.CharField(max_length=3)
 
+    def __str__(self):
+        return f'{self.name} ({self.email})'
+
 
 class ServiceArea(models.Model):
     provider = models.ForeignKey(Provider, on_delete=models.CASCADE)
