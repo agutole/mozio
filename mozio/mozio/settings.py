@@ -143,6 +143,3 @@ else:
             'PORT': '5432'
         }
     }
-
-GDAL_LIBRARY_PATH = "/tmp/code/lib/libgdal.so.20.1.3"
-GEOS_LIBRARY_PATH = "/tmp/code/lib/libgeos_c.so.1"
