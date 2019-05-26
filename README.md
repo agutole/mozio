@@ -1,8 +1,11 @@
-# Mozio project
+# Mozio challenge
+## Deploy
+- AWS Elasticbeanstalk
+- AWS RDS Postgres + postgis
 
-* Deployed on 
-    - AWS Lambda
-    - AWS RDS Postgres + postgis
-
-* API Documentation:
-- <host>/api/docs
+## API
+- Full documentation: /api/docs
+- Models
+	- /api/provider
+	- /api/service_area
+		- /api/service_area?point=\<latitude\>,\<longitude\>
