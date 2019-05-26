@@ -127,10 +127,13 @@ if os.getenv('env') == 'development':
             'NAME': 'mozio',
             'USER': os.getenv('pg_user'),
             'PASSWORD': os.getenv('pg_password'),
-            'HOST': 'mozio.cf3eenxh04e0.us-east-1.rds.amazonaws.com',
+            'HOST': 'mozio.cf4eenxh04e0.us-east-1.rds.amazonaws.com',
             'PORT': '5432'
         }
     }
+
+    GDAL_LIBRARY_PATH = "/opt/python/current/app/lib/libgdal.so.20.1.3"
+    GEOS_LIBRARY_PATH = "/opt/python/current/app/lib/libgeos_c.so.2"
 
 else:
     DATABASES = {
@@ -143,3 +146,5 @@ else:
             'PORT': '5432'
         }
     }
+
+
